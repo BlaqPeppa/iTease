@@ -1,0 +1,40 @@
+{%begin:setup%}
+<div class="inline-divided div2">
+    <div class="config-box">
+        <h2>Image Categories</h2>
+        {%begin:image_categories%}
+        <div class="select-panel"><ul class="select-list">
+            {%begin:item%}<li><span>{%var:name%}</span></li>{%end:item%}
+            <li class="add-new">Add New</li>
+        </ul><div class="panels">{%block:panels%}{%block:add_panel%}</div></div>
+        {%end:image_categories%}
+    </div><div class="vert-divider">
+    </div><div class="config-box">
+        <h2>Video Categories</h2>
+        {%begin:video_categories%}
+        <div class="select-panel"><ul class="select-list">
+            {%begin:item%}<li><span>{%var:name%}</span></li>{%end:item%}
+            <li class="add-new">Add New</li>
+        </ul><div class="panels">{%block:panels%}{%block:add_panel%}</div></div>
+        {%end:video_categories%}
+    </div>
+</div>
+{%end:setup%}
+{%begin:category_panel%}<div class="panel">
+<h3>{%var:category_title%}</h3>
+</div>{%end:category_panel%}
+{%begin:add_category_panel%}<div class="add-panel">
+    <h3>Creating library category</h3>
+    <div class="form-group">
+        <label for="category_id" class="form-label">ID</label><input type="text" id="category_id" name="id" class="form-control lowercase edit-hyphenate" maxlength="12">
+        <p class="form-desc">Unique identifier name for the category (max 12 chars)</p>
+    </div>
+    <div class="form-group">
+        <label for="category_name" class="form-label">Name</label><input type="text" id="category_name" name="name" class="form-control">
+        <p class="form-desc">Full name for the category</p>
+    </div>
+    <div class="form-group">
+        <label for="category_path" class="form-label">Path</label><input type="text" id="category_path" name="path" class="form-control browse" data-browse="/">
+        <p class="form-desc">Directory for category files</p>
+    </div>
+</div>{%end:add_category_panel%}

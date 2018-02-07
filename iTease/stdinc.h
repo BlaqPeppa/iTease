@@ -1,0 +1,52 @@
+#pragma once
+#ifdef _MSC_VER
+	#define _CRT_RAND_S
+	//#define _CRT_SECURE_NO_WARNINGS
+	#define _SCL_SECURE_NO_WARNINGS
+	#define NOMINMAX
+#endif
+// C
+#include <cctype>
+#include <climits>
+#include <cstdint>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+// C++
+#include <algorithm>
+#include <atomic>
+#include <fstream>
+#include <iostream>
+#include <iterator>
+#include <map>
+#include <memory>
+#include <mutex>
+#include <numeric>
+#include <random>
+#include <regex>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <stdexcept>
+#include <string>
+#include <thread>
+#include <tuple>
+#include <type_traits>
+#include <typeindex>
+#include <typeinfo>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
+// C++17
+#include <any>
+#include <filesystem>
+#include <optional>
+#include <string_view>
+#ifdef _CRT_SECURE_NO_WARNINGS
+#undef _CRT_SECURE_NO_WARNINGS
+#endif
+#include <gumbo.h>		// unconditionally defines _CRT_SECURE_NO_WARNINGS, dumb
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#endif

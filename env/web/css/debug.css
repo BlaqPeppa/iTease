@@ -1,0 +1,16 @@
+/* RESOURCE */
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,900);
+/* THEME */
+* { box-sizing:border-box; margin:0; padding:0; }
+html { font:400 14px/normal Lato,Arial,sans-serif; height:100%; }
+body { background:#FFF; min-width:320px; height:100%; padding:15px 0; }
+a { color:#FF2626; text-decoration:none; }
+.wrap { width:100%; padding:0 15px; }
+#base { background:#EEE; position:relative; width:95%; height:100%; max-width:1400px; min-height:400px; margin:0 auto; border-radius:20px; padding:0; }
+header { }
+nav { width:100%; }
+header>.status { height:50px; border-bottom:1px solid #3F2440; }
+aside { width:200px; height:100%; max-width:40%; float:left; resize:horizontal; overflow:auto; border-right:1px solid #CCC; }
+main { padding:10px 10px; overflow:hidden; height:100%; }
+main ul { margin-left:20px; }
+footer { position:absolute; height:64px; bottom:15px; left:15px; right:15px; background:url('/image/itease.png') right center no-repeat; }

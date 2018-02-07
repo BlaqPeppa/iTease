@@ -1,0 +1,19 @@
+<!DOCTYPE html><html>
+	<head>
+		{%block:meta%}
+		{%block:icons%}
+		{%block:css%}
+		{%block:javascript_top%}
+	</head>
+	<body class="{%var:page_style%}">
+		<div id="base" class="wrap block_body">{%begin:body%}
+			{%block:nav%}
+			<main class="{%var:page_id%}">
+				{%block:header%}
+				<div class="content wrap block_content">{%block:content%}</div>
+			</main>
+			{%block:footer%}
+		{%end:body%}</div>
+		{%block:javascript%}
+	</body>
+</html>

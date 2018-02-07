@@ -23,19 +23,19 @@
     <ProjectGuid>{88EE3D33-2244-4B9B-B621-2610FD665836}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>iTease</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v141_xp</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v141_xp</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -72,26 +72,33 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\dev\libsrc\gumbo-parser\src;C:\dev\lib_msvc15\gumbo-query\include;C:\dev\lib_msvc15\curl-7.56.1\include;C:\dev\lib_msvc15\openssl-1.1.0f\include;$(ProjectDir);$(ProjectDir)deps;$(ProjectDir)deps\sqlite3;$(VC_IncludePath);$(WindowsSdk_71A_IncludePath);</IncludePath>
+    <LibraryPath>C:\dev\lib_msvc15\gumbo-query\lib\RelWithDebInfo;C:\dev\lib_msvc15\zlib-1.2.11\lib\Debug;C:\dev\lib_msvc15\libssh2-1.8.0\install\lib;C:\dev\lib_msvc15\c-ares\lib;C:\dev\lib_msvc15\curl-7.56.1\lib\RelWithDebInfo;C:\dev\lib_msvc15\openssl-1.1.0f\lib;$(ProjectDir)deps\rapidjson;$(ProjectDir)deps\libmicrohttpd;$(VC_LibraryPath_x86);$(WindowsSdk_71A_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(ProjectDir)deps\libmicrohttpd;$(ProjectDir)deps\SQLiteCpp\Release;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CURL_STATICLIB;MODERN_SQLITE_STD_VARIANT_SUPPORT;MODERN_SQLITE_STD_OPTIONAL_SUPPORT;WIN32;_DEBUG;_CRT_SECURE_NO_WARNINGS;__cpp_lib_uncaught_exceptions;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeaderFile>stdinc.h</PrecompiledHeaderFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DisableSpecificWarnings>4065;4244</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>gq.lib;zlibstaticd.lib;libssh2.lib;Crypt32.lib;Wldap32.lib;cares.lib;libcurl.lib;libsslMDd.lib;libcryptoMDd.lib;Winmm.lib;libmicrohttpd_x86-static_d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,11 +122,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>libcurl.lib;libsslMT.lib;libcryptoMT.lib;Winmm.lib;SQLiteCpp.lib;libmicrohttpd_x86-static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -139,6 +148,96 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="application.cpp" />
+    <ClCompile Include="common.cpp" />
+    <ClCompile Include="cpp\string.cpp" />
+    <ClCompile Include="db.cpp" />
+    <ClCompile Include="deps\cppformat\format.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="deps\cppformat\posix.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="deps\date\tz.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="deps\duktape\duktape.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="deps\duktape\duk_module_node.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="deps\MurmurHash3\MurmurHash3.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="deps\sqlite3\shell.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="deps\sqlite3\sqlite3.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="filesystem.cpp" />
+    <ClCompile Include="html.cpp" />
+    <ClCompile Include="html_parser.cpp" />
+    <ClCompile Include="js.cpp" />
+    <ClCompile Include="logging.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="network.cpp" />
+    <ClCompile Include="plugin.cpp" />
+    <ClCompile Include="script.cpp" />
+    <ClCompile Include="server.cpp" />
+    <ClCompile Include="stdinc.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="template.cpp" />
+    <ClCompile Include="user.cpp" />
+    <ClCompile Include="web.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common.h" />
+    <ClInclude Include="application.h" />
+    <ClInclude Include="cpp\contracts.h" />
+    <ClInclude Include="cpp\date.h" />
+    <ClInclude Include="cpp\icompare.h" />
+    <ClInclude Include="cpp\string.h" />
+    <ClInclude Include="db.h" />
+    <ClInclude Include="db_tables.h" />
+    <ClInclude Include="deps\cppformat\format.h" />
+    <ClInclude Include="deps\cppformat\posix.h" />
+    <ClInclude Include="deps\duktape\duktape.h" />
+    <ClInclude Include="deps\duktape\duk_config.h" />
+    <ClInclude Include="deps\duktape\duk_module_node.h" />
+    <ClInclude Include="deps\rapidxml\rapidxml.hpp" />
+    <ClInclude Include="deps\rapidxml\rapidxml_iterators.hpp" />
+    <ClInclude Include="deps\rapidxml\rapidxml_print.hpp" />
+    <ClInclude Include="deps\rapidxml\rapidxml_utils.hpp" />
+    <ClInclude Include="deps\sqlite_modern_cpp\sqlite_modern_cpp.h" />
+    <ClInclude Include="deps\utf8\utf8.h" />
+    <ClInclude Include="event.h" />
+    <ClInclude Include="filesystem.h" />
+    <ClInclude Include="html.h" />
+    <ClInclude Include="iTease.h" />
+    <ClInclude Include="js.h" />
+    <ClInclude Include="network.h" />
+    <ClInclude Include="network_detail.h" />
+    <ClInclude Include="plugin.h" />
+    <ClInclude Include="user.h" />
+    <ClInclude Include="web.h" />
+    <ClInclude Include="logging.h" />
+    <ClInclude Include="module.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="script.h" />
+    <ClInclude Include="server.h" />
+    <ClInclude Include="stdinc.h" />
+    <ClInclude Include="system.h" />
+    <ClInclude Include="template.h" />
+    <ClInclude Include="webui.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="iTease.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="it.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
